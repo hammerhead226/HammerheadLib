@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * <p>
  * 
  * @author Alec Minchington
- * @version 1.0
+ * @version 1.1
  */
 
 public class LogitechF310Controller extends Joystick {
 
 	public LogitechF310Controller(int usbPort) {
 		super(usbPort);
-		this.deadband = 0.1;
+		this.deadband = 0.2;
 	}
 
 	public LogitechF310Controller(int usbPort, double deadband) {
