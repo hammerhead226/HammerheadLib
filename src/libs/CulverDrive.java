@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * Credit goes to Team 33's Bryan Culver for original idea and math.
  * 
  * @author Alec Minchington
- * @version 1.5
+ * @version 1.6
  */
 
 public final class CulverDrive {
@@ -71,8 +71,14 @@ public final class CulverDrive {
 			left += raw;
 			right -= raw;
 		} else {
-			left += radius;
-			right -= radius;
+			if (throttle < 0) {
+				left -= radius;
+				right += radius;
+				}
+				else {
+					left += radius;
+					right -= radius;
+				}
 		}
 
 		// System.out.println("left: " + limitMotorOutput(left));
