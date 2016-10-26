@@ -11,22 +11,23 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * 
  * @author Alec Minchington
  * 
- * @version 1.0
+ * @version 1.1
  */
 
 public class Controller extends Joystick {
+	
+	private final double DEFAULT_DEADBAND = 0.1;
+	private double deadband;
 
 	public Controller(int usbPort) {
 		super(usbPort);
-		this.deadband = 0.2;
+		this.deadband = DEFAULT_DEADBAND;
 	}
 
 	public Controller(int usbPort, double deadband) {
 		super(usbPort);
 		this.deadband = deadband;
 	}
-
-	private double deadband;
 
 	private Button A = new JoystickButton(this, 1);
 	private Button B = new JoystickButton(this, 2);
