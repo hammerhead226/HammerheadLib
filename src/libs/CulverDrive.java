@@ -71,14 +71,14 @@ public final class CulverDrive {
 			left += raw;
 			right -= raw;
 		} else {
+			// Reverse turning if moving backwards
 			if (throttle < 0) {
 				left -= radius;
 				right += radius;
-				}
-				else {
-					left += radius;
-					right -= radius;
-				}
+			} else {
+				left += radius;
+				right -= radius;
+			}
 		}
 
 		// System.out.println("left: " + limitMotorOutput(left));
@@ -106,9 +106,14 @@ public final class CulverDrive {
 		double left = throttle;
 		double right = throttle;
 
-		left -= radius + raw;
-		right += radius + raw;
-
+		// Reverse turning if moving backwards
+		if (throttle > 0) {
+			left -= radius + raw;
+			right += radius + raw;
+		} else {
+			left += radius + raw;
+			right -= radius + raw;
+		}
 		// System.out.println("left: " + limitMotorOutput(left));
 		// System.out.println("right: " + limitMotorOutput(right));
 
@@ -188,7 +193,7 @@ public final class CulverDrive {
 	 *            x coordinate of the steering stick
 	 * @param y
 	 *            y coordinate of the steering stick
-	 * @return the angle theta from stick vertical.
+	 * @return the angle theta from stick vertical in degrees.
 	 */
 	private static double getThetaFromVertical(double x, double y) {
 		/*
