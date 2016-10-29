@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * Credit goes to Team 33's Bryan Culver for original idea and math.
  * 
  * @author Alec Minchington
- * @version 1.7
+ * @version 1.8
  */
 
 public final class CulverDrive {
@@ -235,7 +235,7 @@ public final class CulverDrive {
 		if (absTheta <= 90) {
 			return ONE_NINTIETH * absTheta;
 		} else {
-			return 0;
+			return 1;
 		}
 	}
 
