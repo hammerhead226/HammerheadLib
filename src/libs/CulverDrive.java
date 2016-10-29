@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * Credit goes to Team 33's Bryan Culver for original idea and math.
  * 
  * @author Alec Minchington
- * @version 1.6
+ * @version 1.7
  */
 
 public final class CulverDrive {
@@ -71,6 +71,7 @@ public final class CulverDrive {
 			left += raw;
 			right -= raw;
 		} else {
+			// Reverse turning if moving backwards
 			if (throttle < 0) {
 				left -= radius;
 				right += radius;
@@ -106,9 +107,14 @@ public final class CulverDrive {
 		double left = throttle;
 		double right = throttle;
 
-		left -= radius + raw;
-		right += radius + raw;
-
+		// Reverse turning if moving backwards
+		if (throttle > 0) {
+			left -= radius + raw;
+			right += radius + raw;
+		} else {
+			left += radius + raw;
+			right -= radius + raw;
+		}
 		// System.out.println("left: " + limitMotorOutput(left));
 		// System.out.println("right: " + limitMotorOutput(right));
 
@@ -188,7 +194,7 @@ public final class CulverDrive {
 	 *            x coordinate of the steering stick
 	 * @param y
 	 *            y coordinate of the steering stick
-	 * @return the angle theta from stick vertical.
+	 * @return the angle theta from stick vertical in degrees.
 	 */
 	private static double getThetaFromVertical(double x, double y) {
 		/*
