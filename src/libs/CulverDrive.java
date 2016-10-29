@@ -234,7 +234,7 @@ public final class CulverDrive {
 		if (absTheta <= 90) {
 			return ONE_NINTIETH * absTheta;
 		} else {
-			return 0;
+			return 1;
 		}
 	}
 
