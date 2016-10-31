@@ -75,11 +75,10 @@ public final class CulverDrive {
 			if (throttle < 0) {
 				left -= radius;
 				right += radius;
-				}
-				else {
-					left += radius;
-					right -= radius;
-				}
+			} else {
+				left += radius;
+				right -= radius;
+			}
 		}
 
 		// System.out.println("left: " + limitMotorOutput(left));
