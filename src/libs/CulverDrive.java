@@ -81,9 +81,6 @@ public final class CulverDrive {
 			}
 		}
 
-		// System.out.println("left: " + limitMotorOutput(left));
-		// System.out.println("right: " + limitMotorOutput(right));
-
 		rd.tankDrive(limit(left), limit(right));
 	}
 
@@ -114,8 +111,6 @@ public final class CulverDrive {
 			left += radius + raw;
 			right -= radius + raw;
 		}
-		// System.out.println("left: " + limitMotorOutput(left));
-		// System.out.println("right: " + limitMotorOutput(right));
 
 		rd.tankDrive(limit(left), limit(right));
 	}
