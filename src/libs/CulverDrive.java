@@ -7,7 +7,8 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * <p>
  * Credit goes to Team 33's Bryan Culver for original idea and math.
  * 
- * @author Alec Minchington
+ * @author Alec Minchington, Team 226
+ * 
  * @version 1.8
  */
 

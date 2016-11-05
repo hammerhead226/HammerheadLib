@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * Includes built-in variable joystick deadband.
  * <p>
  * 
- * @author Alec Minchington
+ * @author Alec Minchington, Team 226
  * 
  * @version 1.1
  */
