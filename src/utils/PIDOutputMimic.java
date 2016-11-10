@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj.PIDOutput;
  * PIDController class and then be used to read the PID output elsewhere in your
  * code. Mainly useful for movements that use multiple PID controllers at once.
  * 
+ * Credit to Joe Ross, Team 330
+ * 
  * @author Alec Minchington, Team 226
  * 
- * @version 1.0
+ * @version 1.05
  */
 
 public class PIDOutputMimic implements PIDOutput {
