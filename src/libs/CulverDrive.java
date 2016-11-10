@@ -9,15 +9,12 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * 
  * @author Alec Minchington, Team 226
  * 
- * @version 1.8
+ * @version 1.85
  */
 
 public final class CulverDrive {
 
 	// TODO tune gains
-
-	private CulverDrive() {
-	};
 
 	// UNIT CIRCLE X/Y COORDS - for testing functions
 	/*
