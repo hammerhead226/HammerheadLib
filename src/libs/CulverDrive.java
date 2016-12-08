@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * 
  * @author Alec Minchington, Team 226
  * 
- * @version 1.85
+ * @version 1.9
  */
 
 public final class CulverDrive {
@@ -48,6 +48,8 @@ public final class CulverDrive {
 	 * method.
 	 * <p>
 	 * 
+	 * @param rd
+	 *            RobotDrive object to be driven
 	 * @param throttle
 	 *            throttle value
 	 * @param x
@@ -87,6 +89,8 @@ public final class CulverDrive {
 	 * quickturn) method.
 	 * <p>
 	 * 
+	 * @param rd
+	 *            RobotDrive object to be driven
 	 * @param throttle
 	 *            throttle value
 	 * @param x
