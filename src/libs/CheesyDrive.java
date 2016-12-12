@@ -11,20 +11,29 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * 
  * @author Alec Minchington, Team 226
  *
- * @version 1.1
+ * @version 1.2
  */
 
 public final class CheesyDrive {
 
 	// TODO tune gains
 
-	public static final double SKIM_GAIN = 0.5;
-	public static final double TURN_GAIN = 1;
+	// THROTTLE/TURN VALUES - for testing functions
+	/*
+	 * double[] throttleTurn = {-1.0, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75,
+	 * 1.0};
+	 */
 
-	// CHEESY DRIVE CALCULATION METHOD
+	// CHEESY DRIVE CONSTANTS
+
+	private static final double SKIM_GAIN = 0.5;
+	private static final double TURN_GAIN = 1.5;
+
+	// CHEESY DRIVE CALCULATION METHODS
 
 	/**
-	 * Calculates motor output for Cheesy Drive.
+	 * Calculates motor output for Cheesy Drive using the quickturn button
+	 * method.
 	 * <p>
 	 * 
 	 * @param rd
@@ -34,7 +43,8 @@ public final class CheesyDrive {
 	 * @param turn
 	 *            turn value
 	 * @param quickTurn
-	 *            {@code true} to enable quick turning, {@code false} to disable
+	 *            {@code true} to enable quick turning (turning in place),
+	 *            {@code false} to disable
 	 */
 	public static void cheesyDrive(RobotDrive rd, double throttle, double turn, boolean quickTurn) {
 		if (!quickTurn) {
@@ -60,7 +70,7 @@ public final class CheesyDrive {
 	 *            number to be skimmed
 	 * @return the amount skimmed off of <b>v</b>
 	 */
-	static double skim(double v) {
+	private static double skim(double v) {
 		if (v > 1.0) {
 			return -((v - 1.0) * SKIM_GAIN);
 		} else if (v < -1.0) {
@@ -79,7 +89,7 @@ public final class CheesyDrive {
 	 * @return {@code 1} if <b>arg</b> {@code > 1}, {@code -1} if <b>arg</b>
 	 *         {@code < -1}.
 	 */
-	static double limit(double arg) {
+	private static double limit(double arg) {
 		if (arg > 1) {
 			return 1;
 		} else if (arg < -1) {
