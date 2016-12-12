@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * 
  * @author Alec Minchington, Team 226
  *
- * @version 1.2
+ * @version 1.3
  */
 
 public final class CheesyDrive {
@@ -28,6 +28,7 @@ public final class CheesyDrive {
 
 	private static final double SKIM_GAIN = 0.5;
 	private static final double TURN_GAIN = 1.5;
+	private static double THROTTLE_THRESHOLD = 0.5;
 
 	// CHEESY DRIVE CALCULATION METHODS
 
@@ -48,6 +49,32 @@ public final class CheesyDrive {
 	 */
 	public static void cheesyDrive(RobotDrive rd, double throttle, double turn, boolean quickTurn) {
 		if (!quickTurn) {
+			turn = turn * (TURN_GAIN * Math.abs(throttle));
+		}
+
+		double leftRaw = throttle - turn;
+		double rightRaw = throttle + turn;
+
+		double left = leftRaw + skim(rightRaw);
+		double right = rightRaw + skim(leftRaw);
+
+		rd.tankDrive(limit(left), limit(right));
+	}
+	
+	/**
+	 * Calculates motor output for Cheesy Drive using the alternate method.
+	 * Quickturning enables after a certain throttle threshold.
+	 * <p>
+	 * 
+	 * @param rd
+	 *            RobotDrive object to be driven
+	 * @param throttle
+	 *            throttle value
+	 * @param turn
+	 *            turn value
+	 */
+	public static void cheesyDriveAlt(RobotDrive rd, double throttle, double turn) {
+		if (throttle > THROTTLE_THRESHOLD) {
 			turn = turn * (TURN_GAIN * Math.abs(throttle));
 		}
 
