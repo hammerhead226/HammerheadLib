@@ -3,6 +3,7 @@ package utils;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 
 /**
  * Wraps 2 encoders into one PIDSource, for use in PIDControllers.
@@ -11,7 +12,7 @@ import edu.wpi.first.wpilibj.PIDSourceType;
  * 
  * @author Alec Minchington, Team 226
  * 
- * @version 1.0
+ * @version 1.1
  */
 
 public class DoubleEncoder implements PIDSource{
@@ -28,6 +29,7 @@ public class DoubleEncoder implements PIDSource{
 		this.leftEncoder = leftEncoder;
 		this.rightEncoder = rightEncoder;
 		this.pidSource = pidSource;
+		setTalonControlModes();
 	}
 	
 	public DoubleEncoder(CANTalon leftEncoder, CANTalon rightEncoder, boolean leftInverted, boolean rightInverted, PIDSourceType pidSource) {
@@ -36,6 +38,7 @@ public class DoubleEncoder implements PIDSource{
 		this.pidSource = pidSource;
 		setLeftEncoderInverted(leftInverted);
 		setRightEncoderInverted(rightInverted);
+		setTalonControlModes();
 	}
 	
 	@Override
@@ -55,16 +58,16 @@ public class DoubleEncoder implements PIDSource{
 		double rightEncoderValue;
 		
 		if (leftEncoderInverted) {
-			leftEncoderValue = -leftEncoder.getPosition();
+			leftEncoderValue = -leftEncoder.get();
 		}
 		else {
-			leftEncoderValue = leftEncoder.getPosition();
+			leftEncoderValue = leftEncoder.get();
 		}
 		if (rightEncoderInverted) {
-			rightEncoderValue = -rightEncoder.getPosition();
+			rightEncoderValue = -rightEncoder.get();
 		}
 		else {
-			rightEncoderValue = rightEncoder.getPosition();
+			rightEncoderValue = rightEncoder.get();
 		}
 		
 		return (leftEncoderValue + rightEncoderValue) / 2.0;
@@ -82,5 +85,15 @@ public class DoubleEncoder implements PIDSource{
 	public void setRightEncoderInverted(boolean isInverted) {
 		rightEncoderInverted = isInverted;
 	}
-
+	
+	public void setTalonControlModes() {
+		if (this.pidSource == PIDSourceType.kDisplacement) {
+			leftEncoder.changeControlMode(TalonControlMode.Position);
+			rightEncoder.changeControlMode(TalonControlMode.Position);
+		}
+		if (this.pidSource == PIDSourceType.kRate) {
+			leftEncoder.changeControlMode(TalonControlMode.Speed);
+			rightEncoder.changeControlMode(TalonControlMode.Speed);
+		}
+	}
 }
