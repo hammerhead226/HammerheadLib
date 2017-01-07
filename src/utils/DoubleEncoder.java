@@ -1,9 +1,10 @@
 package utils;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 
 /**
  * Wraps 2 encoders into one PIDSource, for use in PIDControllers.
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
  * 
  * @author Alec Minchington, Team 226
  * 
- * @version 1.1
+ * @version 1.2
  */
 
 public class DoubleEncoder implements PIDSource{
