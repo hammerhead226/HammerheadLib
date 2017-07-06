@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Notifier;
  * Basic motion profile execution manager for use with CTRE Talon SRXs.
  * 
  * @author Alec Minchington
- * @version 1.3
+ * @version 1.4
  */
 public class MotionProfileManager {
 
@@ -114,7 +114,7 @@ public class MotionProfileManager {
 			break;
 		case 2:
 			if (status.activePointValid && status.activePoint.isLastPoint) {
-				setMode(TALON_NEUTRAL);
+				setMode(TALON_HOLD);
 				reset();
 				finished = true;
 			}
@@ -212,6 +212,7 @@ public class MotionProfileManager {
 	 *            the new profile to be executed
 	 */
 	public void changeMotionProfile(double[][] newProfile) {
+		talon.set(TALON_NEUTRAL);
 		profile = newProfile;
 		numPoints = newProfile.length;
 	}
