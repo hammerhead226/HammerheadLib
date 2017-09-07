@@ -275,6 +275,12 @@ public class Controller extends Joystick {
 	public int getDPad() {
 		return getPOV(0);
 	}
+	
+	public void setVibration(double val) {
+		setRumble(RumbleType.kLeftRumble, val);
+		setRumble(RumbleType.kRightRumble, val);
+	}
+	
 
 	// UTILS
 
