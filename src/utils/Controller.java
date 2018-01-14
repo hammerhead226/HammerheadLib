@@ -89,48 +89,28 @@ public class Controller extends Joystick {
 	 * @return X-value of the left joystick
 	 */
 	public double getLeftJoystick_X() {
-		if (Math.abs(getX()) > deadband) {
-			// Correctly inverted -- stick left returns 1.0
-			return -getX();
-		} else {
-			return 0;
-		}
+		return deadband(getX());
 	}
 
 	/**
 	 * @return Y-value of the left joystick
 	 */
 	public double getLeftJoystick_Y() {
-		if (Math.abs(getY()) > deadband) {
-			// Correctly inverted -- stick up returns 1.0
-			return -getY();
-		} else {
-			return 0;
-		}
+		return deadband(getY());
 	}
 
 	/**
 	 * @return X-value of the right joystick
 	 */
 	public double getRightJoystick_X() {
-		if (Math.abs(getRawAxis(4)) > deadband) {
-			// Correctly inverted -- stick left returns 1.0
-			return -getRawAxis(4);
-		} else {
-			return 0;
-		}
+		return deadband(getRawAxis(4));
 	}
 
 	/**
 	 * @return Y-value of the right joystick
 	 */
 	public double getRightJoystick_Y() {
-		if (Math.abs(getRawAxis(5)) > deadband) {
-			// Correctly inverted -- stick up returns 1.0
-			return -getRawAxis(5);
-		} else {
-			return 0;
-		}
+		return deadband(getRawAxis(5));
 	}
 
 	// BUTTONS
@@ -493,6 +473,21 @@ public class Controller extends Joystick {
 	}
 
 	// UTILS
+
+	/**
+	 * Constrains the given value to outside of the range of +/- deadband.
+	 * 
+	 * @param val
+	 *            value to constrain
+	 * @return constrained value
+	 */
+	private double deadband(double val) {
+		if (Math.abs(val) > deadband) {
+			return -val;
+		} else {
+			return 0;
+		}
+	}
 
 	/**
 	 * Gets the joystick deadband threshold.
