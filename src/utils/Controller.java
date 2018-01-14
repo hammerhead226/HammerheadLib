@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 
 public class Controller extends Joystick {
-	
-	private final double DEFAULT_DEADBAND = 0.1;
+
+	private final double DEFAULT_DEADBAND = 0.15;
 	private double deadband;
 
 	public Controller(int usbPort) {
