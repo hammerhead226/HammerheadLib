@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
- * A robot Java wrapper class for the Xbox 360 and Logitech F310 controllers.
- * Includes built-in variable joystick deadband.
+ * A robot Java wrapper class for the Xbox 360. Includes built-in variable
+ * joystick deadband.
  * <p>
  * 
  * @author Alec Minchington, Team 226
@@ -159,8 +159,7 @@ public class Controller extends Joystick {
 	 * Gets current state of the left bumper.
 	 * <p>
 	 * 
-	 * @return {@code true} if the left bumper is pressed, {@code false}
-	 *         otherwise
+	 * @return {@code true} if the left bumper is pressed, {@code false} otherwise
 	 */
 	public boolean getLBButtonPressed() {
 		return getRawButton(5);
@@ -170,21 +169,19 @@ public class Controller extends Joystick {
 	 * Gets current state of the right bumper.
 	 * <p>
 	 * 
-	 * @return {@code true} if the right bumper is pressed, {@code false}
-	 *         otherwise
+	 * @return {@code true} if the right bumper is pressed, {@code false} otherwise
 	 */
 	public boolean getRBButtonPressed() {
 		return getRawButton(6);
 	}
 
 	/**
-	 * Gets current state of the SELECT button.
+	 * Gets current state of the BACK button.
 	 * <p>
 	 * 
-	 * @return {@code true} if the SELECT button is pressed, {@code false}
-	 *         otherwise
+	 * @return {@code true} if the BACK button is pressed, {@code false} otherwise
 	 */
-	public boolean getSELECTButtonPressed() {
+	public boolean getBACKButtonPressed() {
 		return getRawButton(7);
 	}
 
@@ -192,8 +189,7 @@ public class Controller extends Joystick {
 	 * Gets current state of the START button.
 	 * <p>
 	 * 
-	 * @return {@code true} if the START button is pressed, {@code false}
-	 *         otherwise
+	 * @return {@code true} if the START button is pressed, {@code false} otherwise
 	 */
 	public boolean getSTARTButtonPressed() {
 		return getRawButton(8);
@@ -203,8 +199,7 @@ public class Controller extends Joystick {
 	 * Gets current state of the left stick.
 	 * <p>
 	 * 
-	 * @return {@code true} if the left stick is clicked in, {@code false}
-	 *         otherwise
+	 * @return {@code true} if the left stick is clicked in, {@code false} otherwise
 	 */
 	public boolean getLSButtonPressed() {
 		return getRawButton(9);
@@ -446,9 +441,8 @@ public class Controller extends Joystick {
 	}
 
 	/**
-	 * The right trigger is positive and left trigger is negative This means
-	 * that the two triggers' values add to give the result, so pressing both
-	 * gives 0.
+	 * The right trigger is positive and left trigger is negative This means that
+	 * the two triggers' values add to give the result, so pressing both gives 0.
 	 * <p>
 	 * 
 	 * @return value of the combined axis of the triggers
@@ -466,7 +460,13 @@ public class Controller extends Joystick {
 	public int getDPad() {
 		return getPOV(0);
 	}
-	
+
+	/**
+	 * Set the vibration of the controller.
+	 * 
+	 * @param val
+	 *            vibration value
+	 */
 	public void setVibration(double val) {
 		setRumble(RumbleType.kLeftRumble, val);
 		setRumble(RumbleType.kRightRumble, val);
