@@ -1,6 +1,7 @@
 package utils;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -11,7 +12,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * 
  * @author Alec Minchington, Team 226
  * 
- * @version 1.2
+ * @version 1.3
  */
 
 public class Controller extends Joystick {
@@ -241,6 +242,216 @@ public class Controller extends Joystick {
 	}
 
 	/**
+	 * Gets current state of the button.
+	 * 
+	 * @param period
+	 *            interval at which to return {@code true} if the button is pressed
+	 * @return {@code true} every {@code period} seconds if thebutton is pressed,
+	 *         {@code false} otherwise
+	 */
+	private double latest_A = 0;
+
+	public boolean getAButtonPressed(double period) {
+		double now = Timer.getFPGATimestamp();
+		if (getRawButton(1)) {
+			if (now - latest_A > period) {
+				latest_A = now;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Gets current state of the button.
+	 * 
+	 * @param period
+	 *            interval at which to return {@code true} if the button is pressed
+	 * @return {@code true} every {@code period} seconds if thebutton is pressed,
+	 *         {@code false} otherwise
+	 */
+	private double latest_B = 0;
+
+	public boolean getBButtonPressed(double period) {
+		double now = Timer.getFPGATimestamp();
+		if (getRawButton(2)) {
+			if (now - latest_B > period) {
+				latest_B = now;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Gets current state of the button.
+	 * 
+	 * @param period
+	 *            interval at which to return {@code true} if the button is pressed
+	 * @return {@code true} every {@code period} seconds if thebutton is pressed,
+	 *         {@code false} otherwise
+	 */
+	private double latest_X = 0;
+
+	public boolean getXButtonPressed(double period) {
+		double now = Timer.getFPGATimestamp();
+		if (getRawButton(3)) {
+			if (now - latest_X > period) {
+				latest_X = now;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Gets current state of the button.
+	 * 
+	 * @param period
+	 *            interval at which to return {@code true} if the button is pressed
+	 * @return {@code true} every {@code period} seconds if thebutton is pressed,
+	 *         {@code false} otherwise
+	 */
+	private double latest_Y = 0;
+
+	public boolean getYButtonPressed(double period) {
+		double now = Timer.getFPGATimestamp();
+		if (getRawButton(4)) {
+			if (now - latest_Y > period) {
+				latest_Y = now;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Gets current state of the button.
+	 * 
+	 * @param period
+	 *            interval at which to return {@code true} if the button is pressed
+	 * @return {@code true} every {@code period} seconds if thebutton is pressed,
+	 *         {@code false} otherwise
+	 */
+	private double latest_LB = 0;
+
+	public boolean getLBButtonPressed(double period) {
+		double now = Timer.getFPGATimestamp();
+		if (getRawButton(5)) {
+			if (now - latest_LB > period) {
+				latest_LB = now;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Gets current state of the button.
+	 * 
+	 * @param period
+	 *            interval at which to return {@code true} if the button is pressed
+	 * @return {@code true} every {@code period} seconds if thebutton is pressed,
+	 *         {@code false} otherwise
+	 */
+	private double latest_RB = 0;
+
+	public boolean getRBButtonPressed(double period) {
+		double now = Timer.getFPGATimestamp();
+		if (getRawButton(6)) {
+			if (now - latest_RB > period) {
+				latest_RB = now;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Gets current state of the button.
+	 * 
+	 * @param period
+	 *            interval at which to return {@code true} if the button is pressed
+	 * @return {@code true} every {@code period} seconds if thebutton is pressed,
+	 *         {@code false} otherwise
+	 */
+	private double latest_BACK = 0;
+
+	public boolean getBACKButtonPressed(double period) {
+		double now = Timer.getFPGATimestamp();
+		if (getRawButton(7)) {
+			if (now - latest_BACK > period) {
+				latest_BACK = now;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Gets current state of the button.
+	 * 
+	 * @param period
+	 *            interval at which to return {@code true} if the button is pressed
+	 * @return {@code true} every {@code period} seconds if thebutton is pressed,
+	 *         {@code false} otherwise
+	 */
+	private double latest_START = 0;
+
+	public boolean getSTARTButtonPressed(double period) {
+		double now = Timer.getFPGATimestamp();
+		if (getRawButton(8)) {
+			if (now - latest_START > period) {
+				latest_START = now;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Gets current state of the button.
+	 * 
+	 * @param period
+	 *            interval at which to return {@code true} if the button is pressed
+	 * @return {@code true} every {@code period} seconds if thebutton is pressed,
+	 *         {@code false} otherwise
+	 */
+	private double latest_LS = 0;
+
+	public boolean getLSButtonPressed(double period) {
+		double now = Timer.getFPGATimestamp();
+		if (getRawButton(9)) {
+			if (now - latest_LS > period) {
+				latest_LS = now;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Gets current state of the button.
+	 * 
+	 * @param period
+	 *            interval at which to return {@code true} if the button is pressed
+	 * @return {@code true} every {@code period} seconds if thebutton is pressed,
+	 *         {@code false} otherwise
+	 */
+	private double latest_RS = 0;
+
+	public boolean getRSButtonPressed(double period) {
+		double now = Timer.getFPGATimestamp();
+		if (getRawButton(10)) {
+			if (now - latest_RS > period) {
+				latest_RS = now;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * @return value of the left trigger
 	 */
 	public double getLeftTrigger() {
@@ -280,13 +491,11 @@ public class Controller extends Joystick {
 		setRumble(RumbleType.kLeftRumble, val);
 		setRumble(RumbleType.kRightRumble, val);
 	}
-	
 
 	// UTILS
 
 	/**
 	 * Gets the joystick deadband threshold.
-	 * <p>
 	 * 
 	 * @return value of the joystick deadband threshold
 	 */
