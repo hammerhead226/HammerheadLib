@@ -8,8 +8,6 @@ import static java.lang.Math.sqrt;
 import static java.lang.Math.toDegrees;
 import static java.lang.Math.toRadians;
 
-import java.util.Arrays;
-
 /**
  * Swerve drive wheel speed & angle calculator.
  * <p>
@@ -34,8 +32,8 @@ public class SwerveDrive {
 	private Pair[] wheelCoords;
 
 	/**
-	 * Construct a new SwerveDrive given the drive base's length and width.
-	 * Assumes 4 swerve modules.
+	 * Construct a new SwerveDrive given the drive base's length and width. Assumes
+	 * 4 swerve modules.
 	 * 
 	 * @param l
 	 *            Length
@@ -49,10 +47,11 @@ public class SwerveDrive {
 	}
 
 	/**
-	 * Construct a new SwerveDrive object given the coordinates of the each
-	 * swerve modules in relation to a point on the robot (usually center)
+	 * Construct a new SwerveDrive object given the coordinates of the each swerve
+	 * modules in relation to a point on the robot (usually center)
 	 * 
-	 * @param pairs x, y coordinates of each swerve module
+	 * @param pairs
+	 *            x, y coordinates of each swerve module
 	 */
 	public SwerveDrive(Pair[] pairs) {
 		wheelCoords = pairs;
@@ -67,11 +66,16 @@ public class SwerveDrive {
 	/**
 	 * Calculate the vector for each module of a 4-module swerve chassis
 	 * 
-	 * @param str Strafe
-	 * @param fwd Forward throttle
-	 * @param rcw Clockwise rotation
-	 * @param gyro Gyro angle, for field-centric driving
-	 * @return An array containing the desired heading and wheel speed for each module
+	 * @param str
+	 *            Strafe
+	 * @param fwd
+	 *            Forward throttle
+	 * @param rcw
+	 *            Clockwise rotation
+	 * @param gyro
+	 *            Gyro angle, for field-centric driving
+	 * @return An array containing the desired heading and wheel speed for each
+	 *         module
 	 */
 	public double[][] calc4WheelVectors(double str, double fwd, double rcw, double gyro) {
 		double mag = mag(str, fwd);
@@ -108,12 +112,17 @@ public class SwerveDrive {
 	}
 
 	/**
-	 * Calculate the vector for each module of a swerve chassis with n number of modules
+	 * Calculate the vector for each module of a swerve chassis with n number of
+	 * modules
 	 * 
-	 * @param strafe Left/right movement
-	 * @param throttle Forward/backward movement
-	 * @param rotation Clockwise rotation
-	 * @param gyroAngle Angle reading of a gyroscope sensor, for field-centric drive
+	 * @param strafe
+	 *            Left/right movement
+	 * @param throttle
+	 *            Forward/backward movement
+	 * @param rotation
+	 *            Clockwise rotation
+	 * @param gyroAngle
+	 *            Angle reading of a gyroscope sensor, for field-centric drive
 	 * @return a Vector array containing the heading and wheel speed for each module
 	 */
 	public Vector[] calcWheelVectorsN(double strafe, double throttle, double rotation, double gyroAngle) {
@@ -151,7 +160,8 @@ public class SwerveDrive {
 	 * Normalize the given angle to between +/- 180
 	 * 
 	 * @param angle
-	 * @return
+	 *            angle to normalize
+	 * @return normalized angle
 	 */
 	private static double toBase180(double angle) {
 		while (angle > 180) {
@@ -165,9 +175,11 @@ public class SwerveDrive {
 	}
 
 	/**
-	 * Divides all the elements in the given array by the largest value in that array
+	 * Divides all the elements in the given array by the largest value in that
+	 * array.
 	 * 
 	 * @param arg
+	 *            the list to normalize
 	 */
 	private static void normalize(double[] arg) {
 		double max = 1.0;
@@ -182,21 +194,25 @@ public class SwerveDrive {
 	}
 
 	/**
-	 * Calculate cartesian magnitude
+	 * Calculate cartesian magnitude.
 	 * 
 	 * @param x
+	 *            x coordinate
 	 * @param y
-	 * @return magnitude
+	 *            y coordinate
+	 * @return distance from the origin
 	 */
 	private static double mag(double x, double y) {
 		return sqrt(x * x + y * y);
 	}
 
 	/**
-	 * Calculate degree angle given x and y
+	 * Calculate degree angle between the given vectors
 	 * 
 	 * @param y
+	 *            vector 1
 	 * @param x
+	 *            vector 2
 	 * @return degree angle
 	 */
 	private static double degreeAngle(double y, double x) {
