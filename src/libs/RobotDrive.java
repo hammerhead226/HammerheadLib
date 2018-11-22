@@ -29,6 +29,12 @@ public class RobotDrive {
 	private TalonSRX left, right;
 
 	/**
+	 * Sensitivity value to be used in {@link #drive}
+	 */
+	private double sensitivity;
+	private double defaultSensitivity = 0.5;
+
+	/**
 	 * Constructor to construct a RobotDrive object
 	 * 
 	 * @param left
@@ -39,6 +45,7 @@ public class RobotDrive {
 	public RobotDrive(TalonSRX left, TalonSRX right) {
 		this.left = left;
 		this.right = right;
+		sensitivity = defaultSensitivity;
 	}
 
 	/**
@@ -137,6 +144,69 @@ public class RobotDrive {
 	 */
 	public void culverDrive(double throttle, double x, double y) {
 		CulverDrive.culverDriveAlt(this, throttle, x, y);
+	}
+
+	/**
+	 * Drive the motors at "outputMagnitude" and "curve". outputMagnitude is a -1.0
+	 * to +1.0 value, where 0.0 for both represents stopped and not turning.
+	 * {@literal curve < 0 will turn left
+	 * and curve > 0} will turn right.
+	 *
+	 * <p>
+	 * The algorithm for steering provides a constant turn radius for any normal
+	 * speed range, both forward and backward. This method uses a default
+	 * sensitivity of 0.5
+	 *
+	 * <p>
+	 * This function will most likely be used in an autonomous routine.
+	 *
+	 * @param outputMagnitude
+	 *            The speed setting for the outside wheel in a turn, forward or
+	 *            backwards, +1 to -1.
+	 * @param curve
+	 *            The rate of turn, constant for different forward speeds. Set
+	 *            {@literal
+	 *                        curve < 0 for left turn or curve > 0 for right turn.}
+	 *            Set curve = e^(-r/w) to get a turn radius r for wheelbase w of
+	 *            your robot. Conversely, turn radius r = -ln(curve)*w for a given
+	 *            value of curve and wheelbase w.
+	 */
+	public void drive(double outputMagnitude, double curve) {
+		final double leftOutput;
+		final double rightOutput;
+
+		if (curve < 0) {
+			double value = Math.log(-curve);
+			double ratio = (value - sensitivity) / (value + sensitivity);
+			if (ratio == 0) {
+				ratio = .0000000001;
+			}
+			leftOutput = outputMagnitude / ratio;
+			rightOutput = outputMagnitude;
+		} else if (curve > 0) {
+			double value = Math.log(curve);
+			double ratio = (value - sensitivity) / (value + sensitivity);
+			if (ratio == 0) {
+				ratio = .0000000001;
+			}
+			leftOutput = outputMagnitude;
+			rightOutput = outputMagnitude / ratio;
+		} else {
+			leftOutput = outputMagnitude;
+			rightOutput = outputMagnitude;
+		}
+		tankDrive(leftOutput, rightOutput, false);
+	}
+
+	/**
+	 * Method to set sensitivity value to use in {@link #drive}. A higher
+	 * sensitivity will result in sharper turns for a given curve value.
+	 * 
+	 * @param value
+	 *            sets the turning sensitvity
+	 */
+	public void setSensitivity(double value) {
+		sensitivity = value;
 	}
 
 	/**
