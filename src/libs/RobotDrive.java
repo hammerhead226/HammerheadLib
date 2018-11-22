@@ -26,7 +26,7 @@ public class RobotDrive {
 	/**
 	 * Master left {@link #TalonSRX} and right {@link #TalonSRX} to be used
 	 */
-	TalonSRX left, right;
+	private TalonSRX left, right;
 
 	/**
 	 * Constructor to construct a RobotDrive object
