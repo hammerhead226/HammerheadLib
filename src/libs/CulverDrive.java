@@ -60,7 +60,7 @@ public final class CulverDrive {
 	 *            {@code true} to enable turning while throttle is 0,
 	 *            {@code false} to disable
 	 */
-	public static void culverDrive(RobotDrive rd, double throttle, double x, double y, boolean quickTurn) {
+	public static void culverDrive(RobotDrive rd, double throttle, double x, double y, boolean quickTurn, boolean squaredInputs) {
 		double radius = culverDriveCalculateRadius(throttle, x, y);
 		double raw = culverDriveCalculateRaw(x, y);
 
@@ -81,7 +81,7 @@ public final class CulverDrive {
 			}
 		}
 
-		rd.tankDrive(limit(left), limit(right));
+		rd.tankDrive(limit(left), limit(right), squaredInputs);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public final class CulverDrive {
 	 * @param y
 	 *            y coordinate of the steering stick
 	 */
-	public static void culverDriveAlt(RobotDrive rd, double throttle, double x, double y) {
+	public static void culverDriveAlt(RobotDrive rd, double throttle, double x, double y, boolean squaredInputs) {
 		double radius = culverDriveCalculateRadius(throttle, x, y);
 		double raw = culverDriveCalculateAltRaw(x, y);
 
@@ -114,7 +114,7 @@ public final class CulverDrive {
 			right -= radius + raw;
 		}
 
-		rd.tankDrive(limit(left), limit(right));
+		rd.tankDrive(limit(left), limit(right), squaredInputs);
 	}
 
 	// CULVER DRIVE CALCULATION METHODS
