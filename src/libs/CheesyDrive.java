@@ -1,6 +1,6 @@
 package src.libs;
 
-import edu.wpi.first.wpilibj.RobotDrive;
+import src.libs.RobotDrive;
 
 /**
  * A Java implementation of Team 254's Cheesy Drive.
