@@ -1,4 +1,4 @@
-package libs;
+package src.libs;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -84,11 +84,8 @@ public class RobotDrive {
 	 *            {@code false} to disable
 	 */
 	public void cheesyDrive(double throttle, double turn, boolean quickTurn, boolean squaredInputs) {
-		if (squaredInputs) {
-			throttle = Math.copySign(throttle * throttle, throttle);
-			turn = Math.copySign(turn * turn, turn);
-		}
-		CheesyDrive.cheesyDrive(this, throttle, turn, quickTurn);
+		
+		CheesyDrive.cheesyDrive(this, throttle, turn, quickTurn, squaredInputs);
 	}
 
 	/**
@@ -106,11 +103,8 @@ public class RobotDrive {
 	 *            {@code false} to disable
 	 */
 	public void cheesyDrive(double throttle, double turn, boolean squaredInputs) {
-		if (squaredInputs) {
-			throttle = Math.copySign(throttle * throttle, throttle);
-			turn = Math.copySign(turn * turn, turn);
-		}
-		CheesyDrive.cheesyDriveAlt(this, throttle, turn);
+		
+		CheesyDrive.cheesyDriveAlt(this, throttle, turn, squaredInputs);
 	}
 
 	/**
@@ -126,8 +120,8 @@ public class RobotDrive {
 	 *            {@code true} to enable turning while throttle is 0, {@code false}
 	 *            to disable
 	 */
-	public void culverDrive(double throttle, double x, double y, boolean quickTurn) {
-		CulverDrive.culverDrive(this, throttle, x, y, quickTurn);
+	public void culverDrive(double throttle, double x, double y, boolean quickTurn, boolean squaredInputs) {
+		CulverDrive.culverDrive(this, throttle, x, y, quickTurn, squaredInputs);
 	}
 
 	/**
@@ -142,8 +136,8 @@ public class RobotDrive {
 	 * @param y
 	 *            y coordinate of the steering stick
 	 */
-	public void culverDrive(double throttle, double x, double y) {
-		CulverDrive.culverDriveAlt(this, throttle, x, y);
+	public void culverDrive(double throttle, double x, double y, boolean squaredInputs) {
+		CulverDrive.culverDriveAlt(this, throttle, x, y, squaredInputs);
 	}
 
 	/**

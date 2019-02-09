@@ -1,4 +1,4 @@
-package libs;
+package src.libs;
 
 /**
  * Class representing an ordered pair, (x ,y)

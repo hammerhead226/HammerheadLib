@@ -1,6 +1,6 @@
-package libs;
+package src.libs;
 
-import edu.wpi.first.wpilibj.RobotDrive;
+import src.libs.RobotDrive;
 
 /**
  * A Java implementation of Team 254's Cheesy Drive.
@@ -47,7 +47,8 @@ public final class CheesyDrive {
 	 *            {@code true} to enable quick turning (turning in place),
 	 *            {@code false} to disable
 	 */
-	public static void cheesyDrive(RobotDrive rd, double throttle, double turn, boolean quickTurn) {
+	public static void cheesyDrive(RobotDrive rd, double throttle, double turn, boolean quickTurn, boolean squaredInputs) {
+		
 		if (!quickTurn) {
 			turn = turn * (TURN_GAIN * Math.abs(throttle));
 		}
@@ -58,7 +59,7 @@ public final class CheesyDrive {
 		double left = leftRaw + skim(rightRaw);
 		double right = rightRaw + skim(leftRaw);
 
-		rd.tankDrive(limit(left), limit(right));
+		rd.tankDrive(limit(left), limit(right), squaredInputs);
 	}
 	
 	/**
@@ -73,7 +74,8 @@ public final class CheesyDrive {
 	 * @param turn
 	 *            turn value
 	 */
-	public static void cheesyDriveAlt(RobotDrive rd, double throttle, double turn) {
+	public static void cheesyDriveAlt(RobotDrive rd, double throttle, double turn, boolean squaredInputs) {
+		
 		if (throttle > THROTTLE_THRESHOLD) {
 			turn = turn * (TURN_GAIN * Math.abs(throttle));
 		}
@@ -84,7 +86,7 @@ public final class CheesyDrive {
 		double left = leftRaw + skim(rightRaw);
 		double right = rightRaw + skim(leftRaw);
 
-		rd.tankDrive(limit(left), limit(right));
+		rd.tankDrive(limit(left), limit(right), squaredInputs);
 	}
 
 	// AUXILIARY CALCULATION METHODS

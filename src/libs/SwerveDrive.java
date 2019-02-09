@@ -1,4 +1,4 @@
-package libs;
+package src.libs;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.atan2;

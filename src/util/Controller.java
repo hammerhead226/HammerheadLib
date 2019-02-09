@@ -1,4 +1,4 @@
-package util;
+package src.util;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
